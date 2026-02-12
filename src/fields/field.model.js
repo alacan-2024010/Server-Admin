@@ -2,13 +2,13 @@
 
 import mongoose from "mongoose";
 
-const fieldSchema = new mongoose.Schema(
+const fieldSchema = mongoose.Schema(
     {
         fieldName: {
             type: String,
-            required: [true, 'El nombre de campo es obligatorio'],
+            required: [true, 'El nombre del campo es requerido'],
             trim: true,
-            maxlength: [100, 'El nombre no puede exceder de 100 caracteres']
+            maxLength: [100, 'El nombre no puede exceder 100 caracteres']
         },
         fieldType: {
             type: String,
@@ -28,17 +28,17 @@ const fieldSchema = new mongoose.Schema(
         },
         pricePerHour: {
             type: Number,
-            required: [true, 'El precio por hora es requerido.'],
-            min: [0, 'El precio debe ser mayor o igual a 0']
+            required: [true, 'El precio por hora es requerido'],
+            min: [0, 'El precio debe ser mayor o igual 0']
         },
         description: {
             type: String,
             trim: true,
-            maxlength: [500, 'La descripción no puede exceder 500 caracteres']
+            maxLength: [500, 'La descripción no puede exceder 500 caracteres'],
         },
         photo: {
             type: String,
-            default:null
+            default: null
         },
         isActive: {
             type: Boolean,
@@ -51,7 +51,6 @@ const fieldSchema = new mongoose.Schema(
     }
 );
 
-// Índices para optimizar consultas
 fieldSchema.index({ isActive: 1 });
 fieldSchema.index({ fieldType: 1 });
 fieldSchema.index({ isActive: 1, fieldType: 1 });
